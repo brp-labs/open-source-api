@@ -1,0 +1,91 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject HttpClient Http
+
+<PageTitle>OpenSource API</PageTitle>
+
+<h2>Publikationer fra OpenSource</h2>
+
+<div class="mb-3">
+	<input @bind="keyword" placeholder="Indtast søgeord" />
+	<input @bind="itemsPerPage" type="number" min="1" max="25" placeholder="Items per page" />
+	<input @bind="page" type="number" min="1" max="1000" placeholder="Page number" />
+	<button class="btn btn-primary ms-2 me-2" @onclick="Search">Søg</button>
+
+	<button class="btn btn-primary me-2" @onclick="Reset">Nulstil</button>
+
+	@if (isLoading)
+	{
+		<div class="spinner-border text-danger" role="status"> <span class="visually-hidden">Loading...</span> </div>
+	}
+</div>
+
+<QuickGrid Items="@(nodes.AsQueryable())" TItem="Node" Theme="corporate">
+	<PropertyColumn Property="@(n => n.Title)" Sortable="true" />
+	<PropertyColumn Property="@(n => n.Url)" Sortable="true" />
+	<PropertyColumn Property="@(n => n.DateCreated)" Format="yyyy-MM-dd" Sortable="true" />
+</QuickGrid>
+
+@code {
+	record Node(string Title, string Url, DateTime DateCreated);
+
+	List<Node> nodes = new List<Node>();
+	private string keyword = string.Empty;
+	private int itemsPerPage = 25;
+	private int page = 1;
+	private ApiResponse? response;
+	private bool isLoading = false;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await Search();
+	}
+
+	private async Task Search()
+	{
+		isLoading = true;
+		try
+		{
+			var url = $"https://kirkegang.net/opensource/opensource_proxy.php?keyword={Uri.EscapeDataString(keyword)}&items_per_page={itemsPerPage}&page={page}";
+			response = await Http.GetFromJsonAsync<ApiResponse>(url);
+			Console.WriteLine(response); // Log responsen til konsollen
+			nodes = response.Data.Select(n => new Node(n.Attributes.title, n.Links.html, n.Attributes.date_created)).ToList();
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine($"Error: {ex.Message}");
+		}
+		finally {
+			isLoading = false;
+		}
+	}
+
+	public class ApiResponse
+	{
+		public List<NodeData> Data { get; set; }
+	}
+
+	public class NodeData
+	{
+		public NodeAttributes Attributes { get; set; }
+		public NodeLinks Links { get; set; }
+	}
+
+	public class NodeAttributes
+	{
+		public string title { get; set; }
+		public DateTime date_created { get; set; }
+	}
+
+	public class NodeLinks
+	{
+		public string html { get; set; }
+	}
+
+	private void Reset(MouseEventArgs e)
+	{
+		keyword = string.Empty;
+		itemsPerPage = 25;
+
+	}
+}
