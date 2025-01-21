@@ -1,5 +1,5 @@
 <h2>Open Science Framework (OSF)</h2>
-Scientific articles and research papers from the Open Science Framework platform are rendered here.<br><br> 
+Scientific articles and research papers from the Open Science Framework platform are rendered here.
 
 See the live site at Azure: [https://polite-pond-0c2949703.4.azurestaticapps.net](https://polite-pond-0c2949703.4.azurestaticapps.net)
 
@@ -9,9 +9,7 @@ The workflow of this application is as follows: Code is written in <b>C#</b> wit
 
 <h3>Proxy</h3>
 
-I have made a little piece of middleware that serves as a proxy for the API. This is done to avoid CORS issues.
-
-<h3>Open Science Framework</h3>
+I have created a small piece of middleware that acts as a proxy for the API. This is to prevent CORS issues during development when the application is running on a local host without server-side rendering.<h3>Open Science Framework</h3> 
 
 [https://osf.io](https://osf.io)
 
