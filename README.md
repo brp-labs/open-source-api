@@ -1,6 +1,5 @@
-<h1>Open Science Framework</h1>
-
-Scientific articles and research papers from the Open Science Framework Platform are rendered here.
+<h2>Open Science Framework (OSF)</h2>
+Scientific articles and research papers from the Open Science Framework platform are rendered here.
 
 See the live site at: [https://polite-pond-0c2949703.4.azurestaticapps.net](https://polite-pond-0c2949703.4.azurestaticapps.net)
 
