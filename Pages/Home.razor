@@ -1,5 +1,9 @@
 ﻿@page "/"
+
 @using Microsoft.AspNetCore.Components.QuickGrid
+@using Microsoft.AspNetCore.Components.Rendering
+@using Microsoft.AspNetCore.Components
+
 @inject HttpClient Http
 
 <PageTitle>OSF API</PageTitle>
@@ -20,7 +24,7 @@
 
 	<span class="ms-2">Side: @currentPage</span>
 
-	<span class="ms-3 p-2 bg-dark-subtle fs-6">Der kan kun søges på ét søgeord eller sammenhængende streng. Klik på en kolonneoverskrift for at sortere.</span>
+	<span class="ms-3 p-2 bg-dark-subtle fs-6">Der kan kun søges på ét søgeord eller en sammenhængende streng. Klik på en kolonneoverskrift for at sortere.</span>
 
 	@if (isLoading)
 	{
@@ -33,6 +37,7 @@
 	<PropertyColumn Property="@(n => n.Url)" Sortable="true" />
 	<PropertyColumn Property="@(n => n.DateCreated)" Format="yyyy-MM-dd" Sortable="true" />
 </QuickGrid>
+
 
 <div class="footer">
 	This webservice is created by Brian Ravn Pedersen &#128512;
@@ -96,6 +101,7 @@
 	public class NodeAttributes
 	{
 		public string title { get; set; }
+
 		public DateTime date_created { get; set; }
 	}
 
