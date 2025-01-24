@@ -7,13 +7,16 @@
 <h2 class="header">Open Science Framework: Scientific Articles and Research Papers</h2>
 
 <div class="mb-3">
-	<input @bind="keyword" placeholder="Indtast søgeord" />
+	<input @bind="keyword" placeholder="Indtast søgeord" maxlength="100" />
+
 	@* <input @bind="itemsPerPage" type="number" min="1" max="25" placeholder="Items per page" /> *@
 	@* <input @bind="page" type="number" min="1" max="1000" placeholder="Page number" /> *@
 
+	<button class="btn btn-secondary ms-3" @onclick="Ryd">Fjern søgeord</button>
+
 	<button class="btn btn-danger ms-3 me-2" @onclick="Reset">Søg forfra</button>
 
-	<button class="btn btn-primary ms-2 me-2" @onclick="Search">Indlæs næste side</button>
+	<button class="btn btn-success ms-2 me-2" @onclick="Search">Indlæs næste side</button>
 
 	<span class="ms-2">Side: @currentPage</span>
 
@@ -21,7 +24,7 @@
 
 	@if (isLoading)
 	{
-		<div class="spinner-border text-primary ms-4" style="margin-bottom:-10px;" role="status"> <span class="visually-hidden">Loading...</span> </div>
+		<div class="spinner-border text-danger ms-4" style="margin-bottom:-10px;" role="status"> <span class="visually-hidden">Loading...</span> </div>
 	}
 </div>
 
@@ -32,7 +35,7 @@
 </QuickGrid>
 
 <div class="footer">
-	This webservice is created by Brian Ravn Pedersen
+	This webservice is created by Brian Ravn Pedersen &#128512;
 </div>
 
 
@@ -63,12 +66,17 @@
 			response = await Http.GetFromJsonAsync<ApiResponse>(url);
 			Console.WriteLine(response); // Log responsen til konsollen
 			nodes = response.Data.Select(n => new Node(n.Attributes.title, n.Links.html, n.Attributes.date_created)).ToList();
+			Console.WriteLine($"Nodes count after API call: {nodes.Count}"); // Log nodes count
 		}
 		catch (Exception ex)
 		{
 			Console.WriteLine($"Error: {ex.Message}");
 		}
 		finally {
+			if (nodes.Count == 0) {
+				nodes.Add(new Node($"Ingen poster fundet med søgeordet: {keyword}", "", DateTime.MinValue));
+				page = 0;
+			}
 			currentPage = page;
 			isLoading = false;
 		}
@@ -103,5 +111,9 @@
 		page = 0;
 		currentPage = 0;
 		await Search();
+	}
+	private void Ryd(MouseEventArgs e)
+	{
+		keyword = "";
 	}
 }
