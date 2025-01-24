@@ -4,19 +4,22 @@
 
 <PageTitle>OSF API</PageTitle>
 
-<h2>Open Science Framework: Scientific Articles and Research Papers</h2>
+<h2 class="header">Open Science Framework: Scientific Articles and Research Papers</h2>
 
 <div class="mb-3">
 	<input @bind="keyword" placeholder="Indtast søgeord" />
-	<input @bind="itemsPerPage" type="number" min="1" max="25" placeholder="Items per page" />
-	<input @bind="page" type="number" min="1" max="1000" placeholder="Page number" />
-	<button class="btn btn-primary ms-2 me-2" @onclick="Search">Søg</button>
+	@* <input @bind="itemsPerPage" type="number" min="1" max="25" placeholder="Items per page" /> *@
+	@* <input @bind="page" type="number" min="1" max="1000" placeholder="Page number" /> *@
 
-	<button class="btn btn-primary me-2" @onclick="Reset">Nulstil</button>
+	<button class="btn btn-danger ms-3 me-2" @onclick="Reset">Søg forfra</button>
+
+	<button class="btn btn-primary ms-2 me-2" @onclick="Search">Indlæs næste side</button>
+
+	<span class="ms-2">Side: @currentPage</span>
 
 	@if (isLoading)
 	{
-		<div class="spinner-border text-danger" role="status"> <span class="visually-hidden">Loading...</span> </div>
+		<div class="spinner-border text-primary ms-4" style="margin-bottom:-10px;" role="status"> <span class="visually-hidden">Loading...</span> </div>
 	}
 </div>
 
@@ -26,13 +29,19 @@
 	<PropertyColumn Property="@(n => n.DateCreated)" Format="yyyy-MM-dd" Sortable="true" />
 </QuickGrid>
 
+<div class="footer">
+	This webservice is created by Brian Ravn Pedersen
+</div>
+
+
 @code {
 	record Node(string Title, string Url, DateTime DateCreated);
 
 	List<Node> nodes = new List<Node>();
 	private string keyword = string.Empty;
 	private int itemsPerPage = 25;
-	private int page = 1;
+	private int page = 0;
+	private int currentPage = 1;
 	private ApiResponse? response;
 	private bool isLoading = false;
 
@@ -44,6 +53,8 @@
 	private async Task Search()
 	{
 		isLoading = true;
+		page++;
+		nodes.Clear();
 		try
 		{
 			var url = $"https://kirkegang.net/opensource/opensource_proxy.php?keyword={Uri.EscapeDataString(keyword)}&items_per_page={itemsPerPage}&page={page}";
@@ -56,6 +67,7 @@
 			Console.WriteLine($"Error: {ex.Message}");
 		}
 		finally {
+			currentPage = page;
 			isLoading = false;
 		}
 	}
@@ -82,10 +94,12 @@
 		public string html { get; set; }
 	}
 
-	private void Reset(MouseEventArgs e)
+	private async Task Reset(MouseEventArgs e)
 	{
-		keyword = string.Empty;
-		itemsPerPage = 25;
-
+		// keyword = string.Empty;
+		// itemsPerPage = 25;
+		page = 0;
+		currentPage = 0;
+		await Search();
 	}
 }
