@@ -35,7 +35,7 @@
 <QuickGrid Items="@(nodes.AsQueryable())" TItem="Node" Theme="corporate">
 	<PropertyColumn Property="@(n => n.Title)" Sortable="true" />
 	<PropertyColumn Property="@(n => n.Url)" Sortable="true" />
-	<PropertyColumn Property="@(n => n.DateCreated)" Format="yyyy-MM-dd" Sortable="true" />
+	<PropertyColumn Property="@(n => n.DateCreated)" Format="yyyy-MM-dd" Sortable="true" Title="Date created"/>
 </QuickGrid>
 
 
