@@ -21,3 +21,7 @@ The workflow of this application is as follows: Code is written in <b>C#</b> wit
 I have created a small piece of middleware in <b>PHP</b> that acts as a proxy for the API. This is to prevent CORS issues during development when the application is running on a local host without server-side rendering.<h3>Open Science Framework</h3> 
 
 [https://osf.io](https://osf.io)
+
+<h3>Example of use</h3>
+
+![Example of use](screendump.jpg)
