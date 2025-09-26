@@ -23,6 +23,6 @@ I have created a small piece of middleware in <b>PHP</b> that acts as a proxy fo
 [https://osf.io](https://osf.io)
 
 <h3>Example of use</h3>
-Search for recent articles and research papers about Generative AI. Please open the file: screenshot.jpg<br>
+<p>Search for recent articles and research papers about Generative AI. Please open the file</p><br>
 ![Beskrivelse af billede](screenshot.jpg)
 
