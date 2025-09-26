@@ -24,6 +24,6 @@ I have created a small piece of middleware in <b>PHP</b> that acts as a proxy fo
 
 <h3>Example of use</h3>
 Search for recent articles and research papers about Generative AI.<br>
-![Example of use](https://github.com/brp-labs/open-source-api/blob/master/screendump.jpg?raw=true)
+
 
 
