@@ -1,11 +1,20 @@
+<h3>Open Science Framework (OSF)</h3>
+<b>Author:</b> Brian Ravn Pedersen, Data Engineer and Software Developer<br/>
+<b>Created:</b> 2024-09-18<br/>
+<b>Technologies used:</b> C#, .NET, PHP, Blazor WebAssembly, Azure<br/>
+<b>GitHub Repository:</b> https://github.com/brp-labs/open-source-api<br/>
+
+<hr/>
+
 <h2>Open Science Framework (OSF)</h2>
+
 Scientific articles and research papers from the Open Science Framework platform are rendered here.
 
 See the live site at Azure: [https://polite-pond-0c2949703.4.azurestaticapps.net](https://polite-pond-0c2949703.4.azurestaticapps.net)
 
 <h3>Workflow</h3>
 
-The workflow of this application is as follows: Code is written in <b>C#</b> within a <b>.NET</b> environment using <b>Blazor WebAssembly</b> in <b>Visual Studio</b>, and the code is stored in <b>GitHub</b>. It is then deployed to <b>Azure Static Web Apps</b>. The <b>CI/CD</b> pipeline is automated with <b>GitHub Actions</b> A wonderful tool!
+The workflow of this application is as follows: Code is written in <b>C#</b> within a <b>.NET</b> environment using <b>Blazor WebAssembly</b> in <b>Visual Studio</b>, and the code is stored in <b>GitHub</b>. It is then deployed to <b>Azure Static Web Apps</b>. The <b>CI/CD</b> pipeline is automated with <b>GitHub Actions</b> - a wonderful tool!
 
 <h3>Proxy</h3>
 
