@@ -26,7 +26,8 @@ Search for recent articles and research papers about Generative AI.<br><br>
 <img src="screenshot.jpg" alt="Screenshot: Example of use" />
 
 <h3>Open Science Framework</h3>
-The official homepage of the Open Science Framework project: [https://osf.io](https://osf.io)
+The official homepage of the Open Science Framework project: https://osf.io
+
 
 
 
