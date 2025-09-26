@@ -1,7 +1,7 @@
 <h2>Open Source API</h2>
 <b>Author:</b> Brian Ravn Pedersen, Data Engineer and Software Developer<br/>
 <b>Created:</b> 2025-01-27<br/>
-<b>Technologies used:</b> C#, .NET, PHP, Blazor WebAssembly, GitHub, Azure<br/>
+<b>Technologies used:</b> C#, .NET, PHP, Blazor WebAssembly, CI/CD with GitHub Actions, Azure Web Apps<br/>
 <b>GitHub Repository:</b> https://github.com/brp-labs/open-source-api<br/>
 
 <hr/>
