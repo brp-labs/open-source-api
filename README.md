@@ -23,5 +23,6 @@ I have created a small piece of middleware in <b>PHP</b> that acts as a proxy fo
 [https://osf.io](https://osf.io)
 
 <h3>Example of use</h3>
-
-![Example of use](screendump.jpg)
+Look up the recent publicated articles and research papers on the subject "Generative AI".
+<br>
+![Example of use: Look up: "Generative AI"](screendump.jpg)
